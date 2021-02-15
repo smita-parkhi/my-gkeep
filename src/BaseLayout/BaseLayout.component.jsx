@@ -14,7 +14,7 @@ const Base_layout = (props) => {
 
   return (
     <div className='base-layout-wrapper'>
-      <Header hamburgerClickCallback={toggleSidebar} />
+      <Header  hamburgerClickCallback={toggleSidebar} />
 
       <div className='content-wrapper'>
         <Navbar showSideBar={showSideBar} />
