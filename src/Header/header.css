@@ -1,0 +1,78 @@
+.baselayout_header{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    justify-content: flex-start;
+}
+.fabar_wrapper{
+    margin:10px;
+    padding:5px;
+    cursor: pointer;
+
+}
+.fa-bars{
+    font-size: 25px;
+    color: darkgray;
+}
+.falightbulb_wrapper{
+    margin: 8px 0 0 10px;
+    background-color:darkorange;
+    height: 35px; 
+    width: 35px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fa-lightbulb-o{
+    font-size: 30px;
+    color: white;
+    border-radius: 5px;
+
+}
+.logo_header{
+    padding: 3px;
+    margin-left: 10px;
+}
+.header_title{
+    margin: 0px;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 25px;
+    font-family: sans-serif;
+    color: darkgray;
+}
+hr{
+    border-color: gray;
+    margin: 0px;
+    padding: 0;
+}
+.search-textarea{
+    padding: 5px;
+    width: 50%;
+    margin-left: 50px;
+    margin-top: 5px;
+    position: relative;
+}
+.text-search{
+    padding: 15px;
+    background-color: lightgray;
+    border: 2px;
+    border-radius: 5px;
+    width: 100%;
+}
+.fa-search{
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    font-weight: 200;
+
+}
+.search-label{
+    position: absolute;
+    top: 30%;
+    left: 12%;
+    font-weight: 200;
+    font-family: sans-serif;
+}
