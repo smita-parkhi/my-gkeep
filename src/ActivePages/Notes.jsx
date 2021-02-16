@@ -1,11 +1,9 @@
 import React from 'react';
-import '../ActivePages/Notes.scss';
-import Card from '../card/Card';
+import Card from '../card/Card'
+
+import './Notes.scss';
 
 export default function Notes(props) {
-
-
-
   return (
     <div className='component-container'>
       <Card/>

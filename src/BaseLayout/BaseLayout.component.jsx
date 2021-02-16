@@ -6,10 +6,13 @@ import Navbar from '../Navbar/Navbar'
 import './Base-layout.component.scss'
 
 const Base_layout = (props) => {
-  const [showSideBar, setSideBar] = useState(false)
+  const [showSideBar, setSideBar] = useState(false);
+  const [showSidebarColor,setSidebarColor]=useState(false);
+  
 
   const toggleSidebar = () => {
-    setSideBar(!showSideBar)
+    setSideBar(!showSideBar);
+    setSidebarColor(!showSidebarColor);
   }
 
   return (
@@ -17,7 +20,7 @@ const Base_layout = (props) => {
       <Header  hamburgerClickCallback={toggleSidebar} />
 
       <div className='content-wrapper'>
-        <Navbar showSideBar={showSideBar} />
+        <Navbar showSideBar={showSideBar} showSidebarColor={showSideBar}/>
 
         {props.children}
       </div>
