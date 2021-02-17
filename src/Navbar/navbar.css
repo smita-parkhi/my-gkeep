@@ -4,6 +4,11 @@
     /* background-color: blueviolet; */
 
 }
+/* .navbar:hover{
+    position: fixed;
+    background-color: white;
+    z-index: 1000;
+} */
 .container_wrapper{
     padding: 5px;
     /* background: navajowhite; */

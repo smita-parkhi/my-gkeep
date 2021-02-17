@@ -1,0 +1,54 @@
+.container_wrapper_text{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+    
+
+
+    .input_field{
+        box-shadow: 0 5px 3px rgba(57, 63, 72, 0.5);
+        width: 500px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 0.1px solid lightgray;
+        overflow: hidden;
+        
+        
+
+
+
+
+        .text_input{
+            width: 400px;
+            padding: 0px 10px 0px 5px;
+            margin: 0px 10px 15px 0px;
+            border-style: none;
+            font-size: 18px;
+            font-family: sans-serif;
+            font-weight: bold;
+            border-radius: 5px;
+            height: 30px;
+            width: 90%;
+
+        }
+        .multiline_input{
+            width: 400px;
+            padding: 2px 10px 0px 5px;
+            margin: 1px 10px 10px 0px;
+            border-style: none;
+            font-size: 15px;
+            font-family: sans-serif;
+            font-weight: 500;
+            border-radius: 5px;
+            height: 30px;
+            width: 90%;
+
+        }
+    }
+
+
+}
+input:focus {
+    outline:none;
+}
