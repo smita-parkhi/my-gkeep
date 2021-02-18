@@ -32,9 +32,8 @@ const TextArea = (props) => {
     })
     
     return (
-        <div className='container_wrapper_text' ref={noteCreateBox}>
-            <div className='input_field'
-            >
+        <div className='container_wrapper_text' ref={noteCreateBox} >
+            <div className='input_field' >
                 <div>
                     {showdata ? <input
                         className='text_input'
@@ -42,6 +41,7 @@ const TextArea = (props) => {
                         placeholder='Title'
 
                     /> : null}
+        
                 </div>
                 <input
                     className='multiline_input'
@@ -50,6 +50,9 @@ const TextArea = (props) => {
                     ref={textInput}
                     onClick={handleOnClick}
                 />
+                <div className='closeDiv'>
+                {showdata ? <button className='close_button' >Close</button> : null}
+                </div>
             </div>
         </div>
 

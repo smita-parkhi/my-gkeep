@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     
+    
 
 
     .input_field{
@@ -12,7 +13,7 @@
         border-radius: 8px;
         border: 0.1px solid lightgray;
         overflow: hidden;
-        
+        position: relative;
         
 
 
@@ -44,10 +45,25 @@
             width: 90%;
 
         }
+        
+
+        
+
     }
+    
+    
 
 
 }
+.close_Div{
+    padding: 0px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
 input:focus {
     outline:none;
+}
+button:focus{
+    border: none;
 }
