@@ -65,5 +65,11 @@ input:focus {
     outline:none;
 }
 button:focus{
+    outline: none;
+}
+.close_button{
     border: none;
+    background: white;
+    font-size: 15px;
+    font-family: sans-serif;
 }
