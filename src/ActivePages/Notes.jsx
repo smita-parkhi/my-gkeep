@@ -9,7 +9,7 @@ import './Notes.scss';
 
 export default function Notes(props) {
   const [adddata, setadddata] = useState()
-   
+
   const [datas, setdatas] = useState([
     {
       id: 1,
@@ -55,48 +55,35 @@ export default function Notes(props) {
     var clonedArray = JSON.parse(JSON.stringify(datas))
 
     for (var index = 0; index < clonedArray.length; index++) {
-
       if (note.id === clonedArray[index].id) {
         console.log("true");
         if (note.status === 'pinned') {
           clonedArray[index].status = "active"
-
         } else {
           clonedArray[index].status = "pinned"
         }
         setdatas(clonedArray)
       }
-
     }
-
-    
   }
-  const togglehandleClick= (newNote) =>{
+  const togglehandleClick = (newNote) => {
     let clonedArray = JSON.parse(JSON.stringify(datas))
     clonedArray.push(newNote);
     setdatas(clonedArray)
-
-   
-    
-
   }
 
   return (
-
     <div className='component-container'>
       <div className='textarea_input'>
-        <Textarea 
-        handleClickOutsideCallBack ={(newNote)=> togglehandleClick(newNote)} />
+        <Textarea
+          handleClickOutsideCallBack={(newNote) => togglehandleClick(newNote)} />
       </div>
       <h1>Pinned</h1>
       <div className='card_item'>
         {/* {notes.map(note => <Card note={note} />)} */}
         {datas.filter(datas => datas.status === "pinned").map(note => <Card note={note}
           pinClickHandleCallback={(note) => handlePinClick(note)} />)}
-
-
       </div>
-
       <div>
         <h1>Others</h1>
         <div className='card_item'>
@@ -106,9 +93,7 @@ export default function Notes(props) {
           />)}
         </div>
       </div>
-
       {props.children}
-
     </div>
   );
 };

@@ -21,23 +21,18 @@ const TextArea = (props) => {
     const noteCreateBox = useRef(null);
     // const inputField = useRef(null);
 
-
     const handleOnClick = () => {
         // setdata(true);
         setdata(true);
         textInput.current.focus();
-
-
-
     }
+
     const handleOnButtonClick = () => {
         setdata(false);
-
     }
+
     const { handleClickOutsideCallBack } = props;
-
     const handleClickOutside = (e) => {
-
         if (!noteCreateBox.current.contains(e.target)) {
             setdata(false);
             if (title.length > 0 || description.length > 0) {
@@ -59,7 +54,6 @@ const TextArea = (props) => {
         });
     }
 
-
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -75,10 +69,7 @@ const TextArea = (props) => {
                         placeholder='Title'
                         onChange={handleTitleChange}
                         value={title}
-
-
                     /> : null}
-
                 </div>
                 <input
                     className='multiline_input'
@@ -88,16 +79,12 @@ const TextArea = (props) => {
                     onClick={handleOnClick}
                     value={description}
                     onChange={handleonDesclick}
-
                 />
                 <div className='closeDiv'>
                     {showdata ? <button onClick={handleOnButtonClick} className='close_button' >Close</button> : null}
                 </div>
-
             </div>
-
         </div>
-
     );
 }
 
