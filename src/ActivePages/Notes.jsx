@@ -8,7 +8,8 @@ import './Notes.scss';
 
 
 export default function Notes(props) {
-
+  const [adddata, setadddata] = useState()
+   
   const [datas, setdatas] = useState([
     {
       id: 1,
@@ -57,7 +58,7 @@ export default function Notes(props) {
 
       if (note.id === clonedArray[index].id) {
         console.log("true");
-        if (note.status ==='pinned') {
+        if (note.status === 'pinned') {
           clonedArray[index].status = "active"
 
         } else {
@@ -67,12 +68,25 @@ export default function Notes(props) {
       }
 
     }
+
+    
+  }
+  const togglehandleClick= (newNote) =>{
+    let clonedArray = JSON.parse(JSON.stringify(datas))
+    clonedArray.push(newNote);
+    setdatas(clonedArray)
+
+   
+    
+
   }
 
   return (
+
     <div className='component-container'>
       <div className='textarea_input'>
-        <Textarea />
+        <Textarea 
+        handleClickOutsideCallBack ={(newNote)=> togglehandleClick(newNote)} />
       </div>
       <h1>Pinned</h1>
       <div className='card_item'>
