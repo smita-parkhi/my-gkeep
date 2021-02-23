@@ -2,6 +2,7 @@
     width: 250px;
     height: 130px;
     padding: 10px;
+    position: relative;
 }
 .pinned-note{
     margin: 0;
@@ -107,4 +108,14 @@
        }
     }
 }
+.popup-window
+{
+    position: absolute;
+background: #00000050;
+width: 100%;
+height: 100vh;
+top: 0;
+left: 0;
+}
+
 

@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import Card from '../card/Card'
 import Textarea from '../TextArea/TextArea';
+import Popup from '../PopUp/PopUp'
 
 import './Notes.scss';
 
 
 
 
+
 export default function Notes(props) {
   const [adddata, setadddata] = useState()
+  const [showPopUp,setPopUp]=useState(false)
 
   const [datas, setdatas] = useState([
     {
@@ -90,9 +93,13 @@ export default function Notes(props) {
           {/* {notes.map(note => <Card note={note} />)} */}
           {datas.filter(datas => datas.status === "active").map(note => <Card note={note}
             pinClickHandleCallback={(note) => handlePinClick(note)}
+            
           />)}
         </div>
       </div>
+      {/* <div>
+        <Popup />
+      </div> */}
       {props.children}
     </div>
   );
