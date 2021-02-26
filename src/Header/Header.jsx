@@ -39,7 +39,7 @@ const Header = (props) => {
             <div className='search-textarea'>
 
                 <input className='text-search' type='text' />
-                <i class="fa fa-search" aria-hidden="true"></i>
+                <i className="fa fa-search" aria-hidden="true"></i>
                 <label className='search-label'>Search</label>
             </div>
         </div>

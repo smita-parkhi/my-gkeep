@@ -14,13 +14,13 @@ export default function Navbar(props) {
 
       <div className='container_wrapper' style={{backgroundColor: showSidebarColor ? '#F9E79F ' : 'white'}}>
         <Link to='/' className='navbar_link'>
-          <i class="fa fa-sticky-note-o"></i>
+          <i className="fa fa-sticky-note-o"></i>
           <h4 className='link_heading'>Notes</h4></Link>
       </div>
 
       <div className='container_wrapper' style={{backgroundColor: showSidebarColor ? '#F9E79F' : 'white'}}>
         <Link className='navbar_link' to='/archive'>
-          <i class="fa fa-archive"></i>
+          <i className="fa fa-archive"></i>
           <h4 className='link_heading'>Archive</h4></Link>
       </div>
 

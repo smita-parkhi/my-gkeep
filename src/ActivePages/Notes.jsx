@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import Card from '../card/Card'
-import Textarea from '../TextArea/TextArea';
+import Textarea from '../TextArea/TextArea'
 import Popup from '../PopUp/PopUp'
 
-import './Notes.scss';
-
-
-
-
+import './Notes.scss'
 
 export default function Notes(props) {
-  const [adddata, setadddata] = useState()
-  const [showPopUp,setPopUp]=useState(false)
+  const [showEditWindow, setEditWindow] = useState(false)
+  const [activeNote,setActiveNote]= useState(null)
 
   const [datas, setdatas] = useState([
     {
@@ -53,10 +49,7 @@ export default function Notes(props) {
   ]);
 
   const handlePinClick = (note) => {
-    console.log("gdhjdk")
-    console.log(note);
     var clonedArray = JSON.parse(JSON.stringify(datas))
-
     for (var index = 0; index < clonedArray.length; index++) {
       if (note.id === clonedArray[index].id) {
         console.log("true");
@@ -69,38 +62,63 @@ export default function Notes(props) {
       }
     }
   }
+
+  const handleUpdateNote = (updatedNote) => {
+    let clonedArray = JSON.parse(JSON.stringify(datas))
+    for (var index = 0; index < clonedArray.length; index++) {
+      if (updatedNote.id === clonedArray[index].id) {
+        clonedArray[index] = updatedNote
+        setdatas(clonedArray)
+      }
+    }
+  }
+
   const togglehandleClick = (newNote) => {
     let clonedArray = JSON.parse(JSON.stringify(datas))
     clonedArray.push(newNote);
     setdatas(clonedArray)
   }
 
+  const handleNoteClick = (note) => {
+    setEditWindow(true)
+    setActiveNote(note) 
+  }
+  
   return (
-    <div className='component-container'>
+    <div className='component-container' >
       <div className='textarea_input'>
         <Textarea
-          handleClickOutsideCallBack={(newNote) => togglehandleClick(newNote)} />
+          handleClickOutsideCallBack={(newNote) => togglehandleClick(newNote)}
+        />
       </div>
+
       <h1>Pinned</h1>
       <div className='card_item'>
-        {/* {notes.map(note => <Card note={note} />)} */}
-        {datas.filter(datas => datas.status === "pinned").map(note => <Card note={note}
-          pinClickHandleCallback={(note) => handlePinClick(note)} />)}
+        {datas.filter(datas => datas.status === "pinned").map(note => <Card
+          note={note}
+          key={note.id}
+          pinClickHandleCallback={(note) => handlePinClick(note)} 
+          noteClickCallback={(note)=>handleNoteClick(note)} 
+        />)}
       </div>
-      <div>
-        <h1>Others</h1>
-        <div className='card_item'>
-          {/* {notes.map(note => <Card note={note} />)} */}
-          {datas.filter(datas => datas.status === "active").map(note => <Card note={note}
-            pinClickHandleCallback={(note) => handlePinClick(note)}
-            
-          />)}
-        </div>
+
+      <h1>Others</h1>
+      <div className='card_item'>
+        {datas.filter(datas => datas.status === "active").map(note => <Card
+          key={note.id}
+          note={note}
+          pinClickHandleCallback={(note) => handlePinClick(note)}
+          noteClickCallback={(note)=>handleNoteClick(note)}
+        />)}
       </div>
-      {/* <div>
-        <Popup />
-      </div> */}
-      {props.children}
+
+      <div className='popup-class'>
+        {showEditWindow ? <Popup
+          note={activeNote}
+          setEditWindow={setEditWindow}
+          updateNoteCallback={(updatedNote)=> handleUpdateNote(updatedNote)}
+        /> : null}
+      </div>
     </div>
   );
 };
