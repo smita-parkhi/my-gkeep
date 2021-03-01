@@ -6,7 +6,7 @@ import Popup from '../PopUp/PopUp'
 import './Notes.scss'
 
 export default function Notes(props) {
-  const [showEditWindow, setEditWindow] = useState(false)
+  const [showPopUpBox, setPopUpBox] = useState(false)
   const [activeNote,setActiveNote]= useState(null)
 
   const [datas, setdatas] = useState([
@@ -80,8 +80,11 @@ export default function Notes(props) {
   }
 
   const handleNoteClick = (note) => {
-    setEditWindow(true)
+    setPopUpBox(true)
     setActiveNote(note) 
+  }
+  const handlePopUpBox=()=>{
+    setPopUpBox(false)
   }
   
   return (
@@ -113,10 +116,11 @@ export default function Notes(props) {
       </div>
 
       <div className='popup-class'>
-        {showEditWindow ? <Popup
+        {showPopUpBox ? <Popup
           note={activeNote}
-          setEditWindow={setEditWindow}
+          // setEditWindow={setEditWindow}
           updateNoteCallback={(updatedNote)=> handleUpdateNote(updatedNote)}
+          popUpBoxCallBack={()=> handlePopUpBox()}
         /> : null}
       </div>
     </div>
