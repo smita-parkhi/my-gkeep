@@ -6,10 +6,9 @@ import './popup.scss'
 
 const Popup = (props) => {
     const ClickOutside = useRef(null)
-    const { setEditWindow, note, updateNoteCallback, popUpBoxCallBack, } = props
+    const { note, updateNoteCallback, popUpBoxCallBack } = props
 
     const [activeNote, setActiveNote] = useState(note)
-    // const [activePopUp, setActivePopUp] = useState()
 
     const handleClickOutsideCard = (e) => {
         if (!ClickOutside.current.contains(e.target)) {

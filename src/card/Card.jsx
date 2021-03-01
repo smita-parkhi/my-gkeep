@@ -19,7 +19,8 @@ export default function Card(props) {
         setPin(false);
     };
 
-    const handleonPinClick = () => {
+    const handleonPinClick = (e) => {
+        e.stopPropagation()
         props.pinClickHandleCallback(props.note)
     }
     

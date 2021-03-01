@@ -118,7 +118,6 @@ export default function Notes(props) {
       <div className='popup-class'>
         {showPopUpBox ? <Popup
           note={activeNote}
-          // setEditWindow={setEditWindow}
           updateNoteCallback={(updatedNote)=> handleUpdateNote(updatedNote)}
           popUpBoxCallBack={()=> handlePopUpBox()}
         /> : null}
