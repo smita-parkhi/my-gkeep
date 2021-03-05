@@ -1,23 +1,23 @@
-.component-container{
+.component-container {
     padding: 20px 10px 20px 70px;
     margin: 10px;
-     
     width: 100%;
 
-    .textarea_input{
-       padding: 0px;
-       
+    .textarea_input {
+        padding: 0px;
     }
-
-
-    .card_item{
-        display: grid;
-        grid-template-columns: auto auto auto auto;
-        grid-template-rows: auto auto auto auto;
+    .heading {
+        font-size: 12px;
+        padding: 15px 0 0 0;
+        margin: 15px 0 0 0;
+        text-transform:uppercase;
+        color: #5f6368;
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: .07272727em;
     }
-    
-    
-
-    
-        
-}   
+}
+.card_item {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+}

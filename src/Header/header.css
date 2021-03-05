@@ -6,17 +6,22 @@
     justify-content: flex-start;
 }
 .fabar_wrapper{
-    margin:10px;
     padding:5px;
     cursor: pointer;
 
 }
 .fa-bars{
     font-size: 25px;
-    color: darkgray;
+    color: #5f6368;
+    padding: 15px;
+}
+.fa-bars:hover{
+    background-color:#f2f2f2;
+    border-radius: 50px;
+    
 }
 .falightbulb_wrapper{
-    margin: 8px 0 0 10px;
+    margin: 15px 0 0 10px;
     background-color:darkorange;
     height: 35px; 
     width: 35px;
@@ -33,19 +38,19 @@
 }
 .logo_header{
     padding: 3px;
-    margin-left: 10px;
+    margin:6px 0 0 10px;
 }
 .header_title{
     margin: 0px;
     padding: 10px;
-    font-weight: 300;
-    font-size: 25px;
-    font-family: sans-serif;
-    color: darkgray;
+    font-weight: 500;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+    color: #5f6368;
 }
 hr{
     border-color: gray;
-    margin: 0px;
+    margin:0;
     padding: 0;
 }
 .search-textarea{

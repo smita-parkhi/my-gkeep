@@ -2,10 +2,8 @@ import react, { useState, useRef, useEffect } from 'react';
 
 import './textarea.scss';
 
-
 const TextArea = (props) => {
     const [showdata, setdata] = useState(false);
-    const [showButton, setButton] = useState(false);
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 
@@ -19,10 +17,8 @@ const TextArea = (props) => {
 
     const textInput = useRef(null);
     const noteCreateBox = useRef(null);
-    // const inputField = useRef(null);
 
     const handleOnClick = () => {
-        // setdata(true);
         setdata(true);
         textInput.current.focus();
     }

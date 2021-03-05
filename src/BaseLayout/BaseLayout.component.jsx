@@ -7,8 +7,7 @@ import './Base-layout.component.scss'
 
 const Base_layout = (props) => {
   const [showSideBar, setSideBar] = useState(false);
-  const [showSidebarColor,setSidebarColor]=useState(false);
-  
+  const [showSidebarColor, setSidebarColor] = useState(false);
 
   const toggleSidebar = () => {
     setSideBar(!showSideBar);
@@ -17,17 +16,13 @@ const Base_layout = (props) => {
 
   return (
     <div className='base-layout-wrapper'>
-      <Header  hamburgerClickCallback={toggleSidebar} />
-
+      <Header hamburgerClickCallback={toggleSidebar} />
       <div className='content-wrapper'>
-        <Navbar showSideBar={showSideBar} showSidebarColor={showSideBar}/>
-
+        <Navbar showSideBar={showSideBar} showSidebarColor={showSideBar} />
         {props.children}
       </div>
     </div>
   )
 };
-
-
 export default Base_layout;
 

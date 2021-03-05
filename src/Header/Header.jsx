@@ -3,21 +3,6 @@ import './header.css';
 
 
 const Header = (props) => {
-    // const [open, setOpen] = useState(true);
-
-    // const handleClick = () => {
-    //     // e.preventDefault();
-    //     setOpen(!open);
-    //   };
-
-    // <div
-    //       style={{
-    //         background: "red",
-    //         width: open ? "100%" : "calc(100% - 50px)",
-    //         height: "100vh"
-    //       }}
-    //     />
-
     const { hamburgerClickCallback } = props
 
     const handleHamburgerClick = () => {
@@ -37,7 +22,6 @@ const Header = (props) => {
                 <h1 className='header_title'>Keep</h1>
             </div>
             <div className='search-textarea'>
-
                 <input className='text-search' type='text' />
                 <i className="fa fa-search" aria-hidden="true"></i>
                 <label className='search-label'>Search</label>

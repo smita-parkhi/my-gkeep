@@ -95,7 +95,7 @@ export default function Notes(props) {
         />
       </div>
 
-      <h1>Pinned</h1>
+      <h1 className='heading'>Pinned</h1>
       <div className='card_item'>
         {datas.filter(datas => datas.status === "pinned").map(note => <Card
           note={note}
@@ -105,7 +105,7 @@ export default function Notes(props) {
         />)}
       </div>
 
-      <h1>Others</h1>
+      <h1 className='heading'>Others</h1>
       <div className='card_item'>
         {datas.filter(datas => datas.status === "active").map(note => <Card
           key={note.id}
