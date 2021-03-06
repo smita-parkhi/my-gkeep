@@ -88,7 +88,7 @@ export default function Notes(props) {
   }
   
   return (
-    <div className='component-container' >
+    <div className='component-container' > 
       <div className='textarea_input'>
         <Textarea
           handleClickOutsideCallBack={(newNote) => togglehandleClick(newNote)}

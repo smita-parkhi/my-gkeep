@@ -11,7 +11,6 @@ const Header = (props) => {
 
     return (
         <div className='baselayout_header'>
-            {/* <button onClick={handleClick}>click me</button> */}
             <div className='fabar_wrapper' onClick={handleHamburgerClick}>
                 <i className="fa fa-bars" aria-hidden="true"></i>
             </div>
