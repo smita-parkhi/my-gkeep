@@ -4,9 +4,14 @@ import './header.css';
 
 const Header = (props) => {
     const { hamburgerClickCallback } = props
+    const [showColor , setColor]=useState(false);
 
     const handleHamburgerClick = () => {
         hamburgerClickCallback()
+    }
+
+    const handleColorChange = () =>{
+        setColor(true)
     }
 
     return (
@@ -20,10 +25,14 @@ const Header = (props) => {
             <div className='logo_header'>
                 <h1 className='header_title'>Keep</h1>
             </div>
-            <div className='search-textarea'>
-                <input className='text-search' type='text' />
+            <div className='search-textarea' onClick={handleColorChange}
+            style={{backgroundColor : showColor ? 'white' : '#f2f2f2'}}>
                 <i className="fa fa-search" aria-hidden="true"></i>
-                <label className='search-label'>Search</label>
+                <input className='text-search' 
+                type='text'
+                placeholder='Search' 
+                style={{backgroundColor : showColor ? 'white' : '#f2f2f2'}}/>
+                
             </div>
         </div>
     );

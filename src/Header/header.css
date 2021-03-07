@@ -54,24 +54,35 @@ hr{
     padding: 0;
 }
 .search-textarea{
-    padding: 5px;
     width: 50%;
+    height: 50px;
     margin-left: 50px;
-    margin-top: 5px;
-    position: relative;
+    margin-top: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+    border-radius: 5px;
+    border: 1px solid lightgray;
 }
 .text-search{
-    padding: 15px;
-    background-color: lightgray;
+    padding: 10px;
     border: 2px;
     border-radius: 5px;
     width: 100%;
+    font-size: 17px;
+    color: #5f6368;
+    background-color: #f2f2f2;
+    margin:2px 0 0 5px;
+    color: #5f6368;
+    font-family: 'Roboto', sans-serif;
+    font-weight:500;
 }
 .fa-search{
-    position: absolute;
-    top: 30%;
-    left: 5%;
-    font-weight: 200;
+    padding: 5px;
+    margin-left: 10px;
+    font-size: 18px;
+    color: #5f6368;
 
 }
 .search-label{
@@ -79,5 +90,5 @@ hr{
     top: 30%;
     left: 12%;
     font-weight: 200;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
