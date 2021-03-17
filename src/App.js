@@ -5,6 +5,7 @@ import Base_layout from './BaseLayout/BaseLayout.component';
 //import Navbar from './Navbar/Navbar.jsx';
 import Notes from './ActivePages/Notes';
 import Archive from './Archive/Archive';
+import SearchResult from './SearcgResult/SearchResult'
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Base_layout> 
           <Route exact path='/' component={Notes}></Route>
           <Route exact path='/archive' component={Archive}></Route>
+          <Route exact path='/search' component={SearchResult}></Route>
+
         </Base_layout>
       </Switch>
     </BrowserRouter>

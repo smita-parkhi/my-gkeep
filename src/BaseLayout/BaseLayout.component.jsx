@@ -9,97 +9,137 @@ import './Base-layout.component.scss'
 const Base_layout = (props) => {
   const [showSideBar, setSideBar] = useState(false);
   const [showSidebarColor, setSidebarColor] = useState(false);
+  const [filterData, setFilterData] = useState([])
 
   const [datas, setdatas] = useState([
     {
       id: 1,
       title: 'First note',
       description: 'first note description',
-      status: 'active'
+      status: 'active',
+      isArchive: false
     },
     {
       id: 2,
       title: 'Second note',
       description: 'second note description',
-      status: 'pinned'
+      status: 'pinned',
+      isArchive: false
     },
     {
       id: 3,
       title: 'Third note',
       description: 'third note description',
-      status: 'pinned'
+      status: 'pinned',
+      isArchive: false
     },
     {
       id: 4,
       title: 'Fourth note',
       description: 'fourth note description',
-      status: 'pinned'
+      status: 'pinned',
+      isArchive: false
     },
     {
       id: 5,
       title: 'Fifth note',
       description: 'fifth note description',
-      status: 'active'
+      status: 'active',
+      isArchive: false
     },
     {
       id: 6,
       title: 'Sixth note',
       description: 'sixth note description',
-      status: 'active'
+      status: 'active',
+      isArchive: false
     }
   ]);
-
-  const [searchText, setSearchText] = useState(datas)
-
 
   const toggleSidebar = () => {
     setSideBar(!showSideBar);
     setSidebarColor(!showSidebarColor);
   }
-  //other way of searchfilter
-  // const handleOnSearchValue = (searchTerm) => {
-  //   const searchResult = getSearchedNotes(datas, searchTerm)
-  //   console.log(searchResult)
-  //setSearchText(searchResult)
-  // }
-  //const getSearchedNotes = (array, query) => {
-  //   // debugger
-  //   return array.filter((element) => {
-  //     const noteTitle = element.title.toLowerCase()
-  //     return noteTitle.includes(query)
-  //   })
-  // }
 
-  const handleOnFilterData = (searchTerm) => {
-    const lowercasedValue = searchTerm.toLowerCase().trim();
-    if (lowercasedValue === "") setSearchText(datas);
-    else {
-      const filteredData = datas.filter(item => {
-        return Object.keys(item).some(key =>
-          item[key].toString().toLowerCase().includes(lowercasedValue)
-        );
-      });
-      console.log(filteredData)
-      setSearchText(filteredData)
-    }
-    
+  const handleOnSearchValue = (searchTerm) => {
+    const searchResult = getSearchedNotes(datas, searchTerm)
+    //console.log(searchResult)
+    setFilterData(searchResult)
   }
+
+  const getSearchedNotes = (array, query) => {
+    // debugger
+    return array.filter((element) => {
+      const noteTitle = element.title.toLowerCase()
+      return noteTitle.includes(query)
+    })
+  }
+
+  const handlePinClickCallback = (note) => {
+    var clonedArray = JSON.parse(JSON.stringify(datas))
+    for (var index = 0; index < clonedArray.length; index++) {
+      if (note.id === clonedArray[index].id) {
+        if (note.status === 'pinned') {
+          clonedArray[index].status = "active"
+
+        } else {
+          clonedArray[index].status = "pinned"
+        }
+        setdatas(clonedArray)
+      }
+    }
+
+  }
+
+  const handleNoteUpdateClickCallback = (updatedNote) => {
+    let clonedArray = JSON.parse(JSON.stringify(datas))
+    for (var index = 0; index < clonedArray.length; index++) {
+      if (updatedNote.id === clonedArray[index].id) {
+        clonedArray[index] = updatedNote;
+        setdatas(clonedArray)
+      }
+    }
+  }
+
+  const handleNewNoteCallback = (newNote) => {
+    let clonedArray = JSON.parse(JSON.stringify(datas))
+    clonedArray.push(newNote);
+    setdatas(clonedArray)
+  }
+
+  const handleArchiveClickCallback = (note) => {
+    var clonedArray = JSON.parse(JSON.stringify(datas))
+    debugger
+    for (var index = 0; index < clonedArray.length; index++) {
+      if (note.id === clonedArray[index].id) {
+        //console.log("true");
+        if (note.isArchive == true ) {
+          clonedArray[index].isArchive = false
+        } else {
+          clonedArray[index].isArchive = true
+        }
+        setdatas(clonedArray)
+      }
+    }
+  }
+
 
   return (
     <div className='base-layout-wrapper'>
       <BaseProvider
         value={{
-          searchText: searchText,
-          setSearchText: setSearchText,
-          name: 'smita',
-          noteList: [
-            { id: 1 }
-          ]
+          datas: datas,
+          setdatas: setdatas,
+          filterData: filterData,
+
+          pinClickCallback: note => { handlePinClickCallback(note) },
+          noteClickUpdateCallback: updatedNote => { handleNoteUpdateClickCallback(updatedNote) },
+          addNewNoteCallback: newNote => { handleNewNoteCallback(newNote) },
+          archivePinClickCallback: note => { handleArchiveClickCallback(note) }
         }}>
         <Header
           hamburgerClickCallback={toggleSidebar}
-          // searchValueCallback={(searchTerm) => handleOnSearchValue(searchTerm)}
-          filterDataCallback={(searchTerm) => handleOnFilterData(searchTerm)}
+          searchValueCallback={(searchTerm) => handleOnSearchValue(searchTerm)}
         />
         <div className='content-wrapper'>
           <Navbar showSideBar={showSideBar} showSidebarColor={showSideBar} />
@@ -109,5 +149,4 @@ const Base_layout = (props) => {
     </div>
   )
 };
-
 export default Base_layout;

@@ -6,7 +6,7 @@ export default function Card(props) {
     const [showPin, setPin] = useState(false);
 
     // callback
-    const { noteClickCallback } = props
+    const { noteClickCallback, archiveClickCallback } = props
 
     // props
     const { note } = props
@@ -27,6 +27,11 @@ export default function Card(props) {
     const handleNoteClick = () => {
         noteClickCallback(note)
     }
+
+    const handleArchiveClick = (e) =>{
+        e.stopPropagation()
+        archiveClickCallback(note);
+    }
     
     const { title, description } = note
     return (
@@ -45,7 +50,11 @@ export default function Card(props) {
                     {showPin ? <i className="fa fa-thumb-tack"></i> : null}
                 </div>
                 <div className='icon-delete'>
-                    {showPin ? <i className="fa fa-trash-o"></i> : null}
+                     <i className="fa fa-trash-o"></i> 
+                     
+                </div>
+                <div className='icon-archive' onClick={handleArchiveClick}>
+                <i class="fa fa-caret-square-o-down"></i>
                 </div>
             </div>
         </div>

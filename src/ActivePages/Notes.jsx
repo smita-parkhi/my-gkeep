@@ -3,7 +3,6 @@ import Card from '../card/Card'
 import Textarea from '../TextArea/TextArea'
 import Popup from '../PopUp/PopUp'
 import { BaseContext } from '../Context/BaseContext'
-import SearchResult from '../SearcgResult/SearchResult'
 
 import './Notes.scss'
 
@@ -12,77 +11,18 @@ export default function Notes(props) {
   //console.log(BaseConsumer)
   const [showPopUpBox, setPopUpBox] = useState(false)
   const [activeNote, setActiveNote] = useState(null)
-  
- // const { handleclickCallback } = props
-  // const [datas, setdatas] = useState([
-  //   {
-  //     id: 1,
-  //     title: 'First note',
-  //     description: 'first note description',
-  //     status: 'active'
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Second note',
-  //     description: 'second note description',
-  //     status: 'pinned'
-  //   },
-  //   {
-  //     id: 3,
-  //     title: 'Third note',
-  //     description: 'third note description',
-  //     status: 'pinned'
-  //   },
-  //   {
-  //     id: 4,
-  //     title: 'Fourth note',
-  //     description: 'fourth note description',
-  //     status: 'pinned'
-  //   },
-  //   {
-  //     id: 5,
-  //     title: 'Fifth note',
-  //     description: 'fifth note description',
-  //     status: 'active'
-  //   },
-  //   {
-  //     id: 6,
-  //     title: 'Sixth note',
-  //     description: 'sixth note description',
-  //     status: 'active'
-  //   }
-  // ]);
+
 
   const handlePinClick = (note) => {
-    var clonedArray = JSON.parse(JSON.stringify((BaseConsumer.searchText)))
-    for (var index = 0; index < clonedArray.length; index++) {
-      if (note.id === clonedArray[index].id) {
-        console.log("true");
-        if (note.status === 'pinned') {
-          clonedArray[index].status = "active"
-        } else {
-          clonedArray[index].status = "pinned"
-        }
-        ((BaseConsumer.setSearchText)(clonedArray))
-      }
-    }
+    { BaseConsumer.pinClickCallback(note) }
   }
 
   const handleUpdateNote = (updatedNote) => {
-    let clonedArray = JSON.parse(JSON.stringify((BaseConsumer.searchText)))
-    for (var index = 0; index < clonedArray.length; index++) {
-      if (updatedNote.id === clonedArray[index].id) {
-        clonedArray[index] = updatedNote;
-        ((BaseConsumer.setSearchText)(clonedArray))
-      }
-    }
+    { BaseConsumer.noteClickUpdateCallback(updatedNote) }
   }
 
   const togglehandleClick = (newNote) => {
-    let clonedArray = JSON.parse(JSON.stringify(BaseConsumer.searchText))
-    clonedArray.push(newNote);
-    ((BaseConsumer.setSearchText)(clonedArray))
-    //handleclickCallback(newNote)
+    { BaseConsumer.addNewNoteCallback(newNote) }
   }
 
   const handleNoteClick = (note) => {
@@ -93,39 +33,60 @@ export default function Notes(props) {
     setPopUpBox(false)
   }
 
+  const handleArchiveClick = (note) => {
+    {BaseConsumer.archivePinClickCallback(note)}
+
+    // var clonedArray = JSON.parse(JSON.stringify((BaseConsumer.datas)))
+    // debugger
+    // for (var index = 0; index < clonedArray.length; index++) {
+    //   if (note.id === clonedArray[index].id) {
+    //     console.log("true");
+    //     if (note.isArchive = true) {
+    //       clonedArray[index].isArchive = false
+    //     } else {
+    //       clonedArray[index].isArchive = true
+    //     }
+    //     ((BaseConsumer.setdatas)(clonedArray))
+    //   }
+    // }
+  }
+
+
   return (
     <div className='component-container' >
       <div className='textarea_input'>
         <Textarea
-           handleClickOutsideCallBack={(newNote) => togglehandleClick(newNote)}
+          handleClickOutsideCallBack={(newNote) => togglehandleClick(newNote)}
         />
       </div>
 
       <h1 className='heading'>Pinned</h1>
       <div className='card_item'>
-        {(BaseConsumer.searchText).filter(datas => datas.status === "pinned").map(note => <Card
+        {(BaseConsumer.datas).filter(datas => datas.status === "pinned" && datas.isArchive === false).map(note => <Card
           note={note}
           key={note.id}
-           pinClickHandleCallback={(note) => handlePinClick(note)}
-           noteClickCallback={(note) => handleNoteClick(note)}
+          pinClickHandleCallback={(note) => handlePinClick(note)}
+          noteClickCallback={(note) => handleNoteClick(note)}
+          archiveClickCallback={(note) => handleArchiveClick(note)}
         />)}
       </div>
 
       <h1 className='heading'>Others</h1>
       <div className='card_item'>
-        {(BaseConsumer.searchText).filter(datas => datas.status === "active").map(note => <Card
+        {(BaseConsumer.datas).filter(datas => datas.status === "active" && datas.isArchive === false  ).map(note => <Card
           key={note.id}
           note={note}
           pinClickHandleCallback={(note) => handlePinClick(note)}
-           noteClickCallback={(note) => handleNoteClick(note)}
+          noteClickCallback={(note) => handleNoteClick(note)}
+          archiveClickCallback={(note) => handleArchiveClick(note)}
         />)}
       </div>
 
       <div className='popup-class'>
         {showPopUpBox ? <Popup
           note={activeNote}
-           updateNoteCallback={(updatedNote) => handleUpdateNote(updatedNote)}
-           popUpBoxCallBack={() => handlePopUpBox()}
+          updateNoteCallback={(updatedNote) => handleUpdateNote(updatedNote)}
+          popUpBoxCallBack={() => handlePopUpBox()}
         /> : null}
       </div>
 

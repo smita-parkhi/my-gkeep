@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './header.css';
+import { withRouter } from 'react-router';
 
 
 const Header = (props) => {
-    const { hamburgerClickCallback, searchValueCallback, filterDataCallback } = props
+    const { hamburgerClickCallback, searchValueCallback, filterDataCallback , searchText} = props
     const [showColor, setColor] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
+    const [showResult, setResult]= useState([])
 
     const handleHamburgerClick = () => {
         hamburgerClickCallback()
@@ -21,9 +23,11 @@ const Header = (props) => {
 
     const handleOnKeyDown = (event) => {
         if (event.key === 'Enter') {
-            // searchValueCallback(searchTerm)
-            filterDataCallback(searchTerm)
+             searchValueCallback(searchTerm)
+            //filterDataCallback(searchTerm)
+            props.history.push('/search')
         }
+       // console.log(searchText)
     }
 
     return (
@@ -53,4 +57,4 @@ const Header = (props) => {
     );
 };
 
-export default Header;
+export default withRouter(Header);
