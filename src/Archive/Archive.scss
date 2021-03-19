@@ -17,6 +17,7 @@
     .archive-box {
         display: flex;
         justify-content: center;
+        margin-top: 20%;
 
         .fa-archive-icon {
             font-size: 100px;
@@ -24,14 +25,16 @@
             background-color: white;
             padding: 0px;
             color: lightgray;
+            margin-left: 35%;
         }
     }
     .archive-heading {
         font-family: "Roboto", sans-serif;
         color: #80868b;
-        font-size: 1.375rem;
+        font-size: 1.575rem;
         font-weight: 400;
         letter-spacing: 0;
+        margin-left: 400px;
     }
     // }
 }

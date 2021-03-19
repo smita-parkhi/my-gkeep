@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Card from '../card/Card'
 import Textarea from '../TextArea/TextArea'
 import Popup from '../PopUp/PopUp'
@@ -8,10 +8,6 @@ import './Notes.scss'
 
 export default function Notes(props) {
   const BaseConsumer = useContext(BaseContext);
-  //console.log(BaseConsumer)
-  const [showPopUpBox, setPopUpBox] = useState(false)
-  const [activeNote, setActiveNote] = useState(null)
-
 
   const handlePinClick = (note) => {
     { BaseConsumer.pinClickCallback(note) }
@@ -26,32 +22,17 @@ export default function Notes(props) {
   }
 
   const handleNoteClick = (note) => {
-    setPopUpBox(true)
-    setActiveNote(note)
+    {BaseConsumer.noteClickCallback(note)};
   }
   const handlePopUpBox = () => {
-    setPopUpBox(false)
+    { BaseConsumer.popUpBoxCallback()}
   }
 
   const handleArchiveClick = (note) => {
-    {BaseConsumer.archivePinClickCallback(note)}
-
-    // var clonedArray = JSON.parse(JSON.stringify((BaseConsumer.datas)))
-    // debugger
-    // for (var index = 0; index < clonedArray.length; index++) {
-    //   if (note.id === clonedArray[index].id) {
-    //     console.log("true");
-    //     if (note.isArchive = true) {
-    //       clonedArray[index].isArchive = false
-    //     } else {
-    //       clonedArray[index].isArchive = true
-    //     }
-    //     ((BaseConsumer.setdatas)(clonedArray))
-    //   }
-    // }
+    { BaseConsumer.archivePinClickCallback(note) }
   }
 
-
+  
   return (
     <div className='component-container' >
       <div className='textarea_input'>
@@ -59,7 +40,7 @@ export default function Notes(props) {
           handleClickOutsideCallBack={(newNote) => togglehandleClick(newNote)}
         />
       </div>
-
+  
       <h1 className='heading'>Pinned</h1>
       <div className='card_item'>
         {(BaseConsumer.datas).filter(datas => datas.status === "pinned" && datas.isArchive === false).map(note => <Card
@@ -69,11 +50,11 @@ export default function Notes(props) {
           noteClickCallback={(note) => handleNoteClick(note)}
           archiveClickCallback={(note) => handleArchiveClick(note)}
         />)}
-      </div>
+      </div> 
 
       <h1 className='heading'>Others</h1>
       <div className='card_item'>
-        {(BaseConsumer.datas).filter(datas => datas.status === "active" && datas.isArchive === false  ).map(note => <Card
+        {(BaseConsumer.datas).filter(datas => datas.status === "active" && datas.isArchive === false).map(note => <Card
           key={note.id}
           note={note}
           pinClickHandleCallback={(note) => handlePinClick(note)}
@@ -83,8 +64,8 @@ export default function Notes(props) {
       </div>
 
       <div className='popup-class'>
-        {showPopUpBox ? <Popup
-          note={activeNote}
+        {(BaseConsumer.showPopUpBox) ? <Popup
+          note={BaseConsumer.activeNote}
           updateNoteCallback={(updatedNote) => handleUpdateNote(updatedNote)}
           popUpBoxCallBack={() => handlePopUpBox()}
         /> : null}

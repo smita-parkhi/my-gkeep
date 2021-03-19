@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { BaseContext } from '../Context/BaseContext'
+
 
 import '../card/card.scss'
 
 export default function Card(props) {
+    const BaseConsumer = useContext(BaseContext);
+
     const [showPin, setPin] = useState(false);
+    const [showColor, setColor] = useState(false)
 
     // callback
-    const { noteClickCallback, archiveClickCallback } = props
+    const { noteClickCallback, archiveClickCallback, deleteClickCallback } = props
 
     // props
     const { note } = props
-    
+
     const MouseEnter = () => {
         setPin(true);
     };
@@ -23,16 +28,16 @@ export default function Card(props) {
         e.stopPropagation()
         props.pinClickHandleCallback(props.note)
     }
-    
+
     const handleNoteClick = () => {
-        noteClickCallback(note)
+        noteClickCallback(note);
     }
 
-    const handleArchiveClick = (e) =>{
+    const handleArchiveClick = (e) => {
         e.stopPropagation()
         archiveClickCallback(note);
     }
-    
+
     const { title, description } = note
     return (
         <div className='contain-wrapper'>
@@ -49,12 +54,9 @@ export default function Card(props) {
                 <div className='icon-pin' onClick={handleonPinClick}>
                     {showPin ? <i className="fa fa-thumb-tack"></i> : null}
                 </div>
-                <div className='icon-delete'>
-                     <i className="fa fa-trash-o"></i> 
-                     
-                </div>
+
                 <div className='icon-archive' onClick={handleArchiveClick}>
-                <i class="fa fa-caret-square-o-down"></i>
+                    {showPin ? <i class="fa fa-caret-square-o-down"></i> : null}
                 </div>
             </div>
         </div>

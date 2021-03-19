@@ -1,10 +1,13 @@
 import React from 'react';
 import { useEffect, useRef } from 'react'
 import { useState } from 'react/cjs/react.development'
+import { BaseContext } from '../Context/BaseContext'
+import { useContext } from 'react'
 
 import './popup.scss'
 
 const Popup = (props) => {
+    const BaseConsumer = useContext(BaseContext)
     const ClickOutside = useRef(null)
     const { note, updateNoteCallback, popUpBoxCallBack } = props
 

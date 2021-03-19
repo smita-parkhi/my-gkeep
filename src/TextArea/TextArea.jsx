@@ -36,7 +36,8 @@ const TextArea = (props) => {
                     id: uuidv4(),
                     title: title,
                     description: description,
-                    status: 'active'
+                    status: 'active',
+                    isArchive:false
                 });
             }
             setTitle('')

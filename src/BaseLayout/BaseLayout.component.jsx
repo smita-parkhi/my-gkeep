@@ -9,6 +9,8 @@ import './Base-layout.component.scss'
 const Base_layout = (props) => {
   const [showSideBar, setSideBar] = useState(false);
   const [showSidebarColor, setSidebarColor] = useState(false);
+  const [showPopUpBox, setPopUpBox] = useState(false)
+  const [activeNote, setActiveNote] = useState(null)
   const [filterData, setFilterData] = useState([])
 
   const [datas, setdatas] = useState([
@@ -61,6 +63,7 @@ const Base_layout = (props) => {
     setSidebarColor(!showSidebarColor);
   }
 
+
   const handleOnSearchValue = (searchTerm) => {
     const searchResult = getSearchedNotes(datas, searchTerm)
     //console.log(searchResult)
@@ -80,12 +83,15 @@ const Base_layout = (props) => {
     for (var index = 0; index < clonedArray.length; index++) {
       if (note.id === clonedArray[index].id) {
         if (note.status === 'pinned') {
-          clonedArray[index].status = "active"
+          clonedArray[index].status = "active";
+          
 
         } else {
-          clonedArray[index].status = "pinned"
+          clonedArray[index].status = "pinned";
+          clonedArray[index].isArchive = false;
         }
         setdatas(clonedArray)
+
       }
     }
 
@@ -99,6 +105,15 @@ const Base_layout = (props) => {
         setdatas(clonedArray)
       }
     }
+
+    let clonedA = JSON.parse(JSON.stringify(filterData))
+    for (var index = 0; index < clonedA.length; index++) {
+      if (updatedNote.id === clonedA[index].id) {
+        clonedA[index] = updatedNote;
+        setFilterData(clonedA)
+      }
+    }
+
   }
 
   const handleNewNoteCallback = (newNote) => {
@@ -109,18 +124,28 @@ const Base_layout = (props) => {
 
   const handleArchiveClickCallback = (note) => {
     var clonedArray = JSON.parse(JSON.stringify(datas))
-    debugger
+    //debugger
     for (var index = 0; index < clonedArray.length; index++) {
       if (note.id === clonedArray[index].id) {
         //console.log("true");
-        if (note.isArchive == true ) {
+        if (note.isArchive == true) {
           clonedArray[index].isArchive = false
         } else {
-          clonedArray[index].isArchive = true
+          clonedArray[index].isArchive = true;
+          clonedArray[index].status = "active";
         }
         setdatas(clonedArray)
+
       }
     }
+  }
+
+  const handleNoteClickCallback = (note) => {
+    setPopUpBox(true)
+    setActiveNote(note)
+  }
+  const handlePopupBoxCallback = () => {
+    setPopUpBox(false)
   }
 
 
@@ -131,11 +156,17 @@ const Base_layout = (props) => {
           datas: datas,
           setdatas: setdatas,
           filterData: filterData,
+          // setPopUpBox: setPopUpBox,
+          showPopUpBox: showPopUpBox,
+          activeNote: activeNote,
+          setActiveNote: setActiveNote,
 
           pinClickCallback: note => { handlePinClickCallback(note) },
           noteClickUpdateCallback: updatedNote => { handleNoteUpdateClickCallback(updatedNote) },
           addNewNoteCallback: newNote => { handleNewNoteCallback(newNote) },
-          archivePinClickCallback: note => { handleArchiveClickCallback(note) }
+          archivePinClickCallback: note => { handleArchiveClickCallback(note) },
+          noteClickCallback: note => { handleNoteClickCallback(note) },
+          popUpBoxCallback: () => { handlePopupBoxCallback() }
         }}>
         <Header
           hamburgerClickCallback={toggleSidebar}

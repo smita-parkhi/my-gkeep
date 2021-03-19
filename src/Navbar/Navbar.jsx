@@ -22,6 +22,7 @@ export default function Navbar(props) {
           <h4 className='link_heading'>Archive</h4>
         </Link>
       </div>
+
     </div>
   );
 };
